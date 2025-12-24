@@ -1,0 +1,143 @@
+1.Two sum
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        for i in range(len(nums)-1):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j] 
+
+9. Palindrome Number
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if str(x)==str(x)[::-1]:
+            return True
+        else: 
+            return False
+13. Roman to Integer
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        mapping={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        
+        o=0
+        b=0
+        for i in s[::-1]:
+            if mapping[i]>=b:
+                o+=mapping[i]
+            else:
+                o-=mapping[i]
+            b=mapping[i]    
+        return o            
+14. Longest Common Prefix
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        
+        res = []
+        min_len = min(len(s) for s in strs)
+
+        for j in range(min_len):
+            for i in range(1, len(strs)):
+                if strs[i][j] != strs[0][j]:
+                    return "".join(res)
+            res.append(strs[0][j])
+
+        return "".join(res)
+26. Remove Duplicates from Sorted Array
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        a=0
+        for i in range(1,len(nums)):
+            if nums[i]!=nums[a]:
+                a+=1
+                nums[a]=nums[i]
+        return a+1                       
+28. Find the Index of the First Occurrence in a String
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        
+        
+        for i in range(len(haystack)-len(needle)+1):
+           
+          if haystack[i:i+len(needle)]==needle:
+            return i
+        return -1  
+58. Length of Last Word
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        s=s.strip()
+        ans=0
+        for i in range(len(s)-1,-1,-1):
+            if s[i]!= " ":
+                ans+=1
+            else:
+                break
+        return ans
+66. Plus One
+class Solution(object):
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        a=0
+        for i in digits:
+            a*=10
+            a+=i 
+        b=[]
+        a+=1
+        b=[ int(i) for i in str(a)]
+            
+        return b      
+69. Sqrt(x)
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x<2:
+            return x
+        i=0
+        while i*i<=x:
+            i+=1
+        return i-1      
+70. Climbing Stairs
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n==1:
+            return n 
+        a=[0,1,1]
+            
+        for i in range(1,n):
+            x=a[i]+a[i+1]
+            a.append(x)
+        return a[-1]     
